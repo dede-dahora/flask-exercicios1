@@ -28,3 +28,7 @@ def home():
     @app.route('/pagina')
 def pagina():
     return render_template('pagina.html')
+    
+    @app.route('/buscar/<item>')
+def buscar(item):
+    itens = ["maçã", "banana", "laranja", "uva", "morango"]
