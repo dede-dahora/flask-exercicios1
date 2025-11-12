@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
@@ -23,25 +23,19 @@ def quadrado(n):
 
 @app.route('/home')
 def home():
-    return redirect('/')
+    return redirect(url_for('index'))
 
 @app.route('/pagina')
 def pagina():
     return render_template('pagina.html')
-    
+
 @app.route('/buscar/<item>')
 def buscar(item):
     itens = ["maçã", "banana", "laranja", "uva", "morango"]
-
-    encontrado = False
-    for elemento in itens:
-        if elemento == item:
-            encontrado = True
-            break
     
-if encontrado:
+    if item in itens:
         return f'Item "{item}" encontrado na lista.'
-else:
+    else:
         return f'Item "{item}" não encontrado na lista.'
 
 if __name__ == '__main__':
